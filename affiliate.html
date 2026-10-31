@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Affiliate | SparkIIT</title>
+<meta name="description" content="Join the SparkIIT affiliate program and earn by referring learners.">
+<meta name="theme-color" content="#1F57F0">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SparkIIT">
+<meta property="og:title" content="Affiliate | SparkIIT">
+<meta property="og:description" content="Join the SparkIIT affiliate program and earn by referring learners.">
+<meta name="twitter:card" content="summary">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="icon" type="image/svg+xml" href="logo-mark.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<div id="site-header"></div>
+<main id="main">
+<section class="relative overflow-hidden border-b border-line">
+  <div class="grid-bg absolute inset-0 pointer-events-none"></div>
+  <div class="orb w-96 h-96 bg-brand-200/50 -top-32 -left-24"></div>
+  <div class="relative container-x pt-14 pb-14 md:pt-20 md:pb-20">
+    <nav class="text-xs text-mute flex items-center gap-2" aria-label="Breadcrumb"><a href="index.html" class="hover:text-ink">Home</a><span aria-hidden="true">/</span><span class="text-ink" aria-current="page">Affiliate</span></nav>
+    <h1 data-anim class="h1 mt-6 max-w-3xl">Share SparkIIT and earn.</h1>
+    <p data-anim class="lead mt-5">Know someone who wants a career in tech? Join the affiliate program and get rewarded for every learner you bring.</p>
+    
+  </div>
+</section>
+<section class="section">
+  <div class="container-x grid lg:grid-cols-12 gap-14">
+    <div class="lg:col-span-5">
+      <h2 data-anim class="h2">How it works</h2>
+      <ol class="mt-10 space-y-8"><li data-anim class="flex gap-5"><span class="w-9 h-9 rounded-full bg-brand-600 text-white grid place-items-center text-sm font-medium flex-none">1</span><div><h3 class="font-medium">Join</h3><p class="mt-1.5 text-sm text-mute">Fill in the form and our team will share your referral details.</p></div></li><li data-anim class="flex gap-5"><span class="w-9 h-9 rounded-full bg-brand-600 text-white grid place-items-center text-sm font-medium flex-none">2</span><div><h3 class="font-medium">Share</h3><p class="mt-1.5 text-sm text-mute">Recommend SparkIIT to friends, classmates and your audience.</p></div></li><li data-anim class="flex gap-5"><span class="w-9 h-9 rounded-full bg-brand-600 text-white grid place-items-center text-sm font-medium flex-none">3</span><div><h3 class="font-medium">Earn</h3><p class="mt-1.5 text-sm text-mute">Get rewarded when someone you referred enrols.</p></div></li></ol>
+      <ul class="mt-12 space-y-4 text-slate-600">
+        <li data-anim class="flex gap-3"><svg class="icon w-4 h-4 text-brand-600 mt-1"><use href="#i-check"/></svg><span>Rewards for every successful referral</span></li>
+        <li data-anim class="flex gap-3"><svg class="icon w-4 h-4 text-brand-600 mt-1"><use href="#i-check"/></svg><span>Ready-to-share material from our team</span></li>
+        <li data-anim class="flex gap-3"><svg class="icon w-4 h-4 text-brand-600 mt-1"><use href="#i-check"/></svg><span>No fee to join</span></li>
+      </ul>
+    </div>
+    <div class="lg:col-span-7" data-anim>
+      <div x-data="{ sent: false }">
+  <form x-show="!sent" data-subject="Affiliate application" @submit.prevent="SITE.sendMail($event.target); sent = true" class="card p-6 md:p-8 grid gap-5 shadow-soft"><div class="grid sm:grid-cols-2 gap-4"><label class="text-sm"><span class="font-medium">Full name</span><input required name="name" type="text" autocomplete="name" class="mt-1.5 w-full h-11 rounded-lg border border-line bg-white px-3.5 text-sm text-ink placeholder:text-slate-400 outline-none focus:border-brand-500 focus:ring-4 focus:ring-brand-100 transition" placeholder="Your name"></label><label class="text-sm"><span class="font-medium">Phone</span><input required name="phone" type="tel" autocomplete="tel" class="mt-1.5 w-full h-11 rounded-lg border border-line bg-white px-3.5 text-sm text-ink placeholder:text-slate-400 outline-none focus:border-brand-500 focus:ring-4 focus:ring-brand-100 transition" placeholder="+91"></label></div><label class="text-sm"><span class="font-medium">Email</span><input required name="email" type="email" autocomplete="email" class="mt-1.5 w-full h-11 rounded-lg border border-line bg-white px-3.5 text-sm text-ink placeholder:text-slate-400 outline-none focus:border-brand-500 focus:ring-4 focus:ring-brand-100 transition" placeholder="you@example.com"></label><label class="text-sm"><span class="font-medium">How will you share?</span><select name="channel" class="mt-1.5 w-full h-11 rounded-lg border border-line bg-white px-3.5 text-sm text-ink placeholder:text-slate-400 outline-none focus:border-brand-500 focus:ring-4 focus:ring-brand-100 transition"><option>Social media</option><option>College or community</option><option>Blog or YouTube</option><option>Friends and family</option><option>Other</option></select></label><label class="text-sm"><span class="font-medium">Tell us about your audience</span><textarea name="audience" rows="4" class="mt-1.5 w-full rounded-lg border border-line bg-white px-3.5 py-3 text-sm text-ink placeholder:text-slate-400 outline-none focus:border-brand-500 focus:ring-4 focus:ring-brand-100 transition" placeholder="Optional"></textarea></label>
+    <button type="submit" class="btn btn-primary">Join the affiliate program <svg class="icon w-4 h-4"><use href="#i-arrow"/></svg></button>
+  </form>
+  <div x-show="sent" x-cloak class="card p-10 text-center shadow-soft"><div class="w-12 h-12 rounded-full bg-brand-50 text-brand-600 grid place-items-center mx-auto"><svg class="icon w-6 h-6"><use href="#i-check"/></svg></div><h2 class="mt-5 font-serif text-3xl">Thank you.</h2><p class="mt-2 text-sm text-mute">We have noted your details and will reach out shortly.</p></div>
+</div>
+    </div>
+  </div>
+</section>
+</main>
+<div id="site-footer"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.14.1/dist/cdn.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
+<script src="assets/config.js"></script>
+<script src="assets/programs-data.js"></script>
+<script src="assets/site.js"></script>
+
+<script>SITE.anim();</script>
+</body>
+</html>

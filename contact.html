@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact | SparkIIT</title>
+<meta name="description" content="Talk to the SparkIIT team about programs, batches and how to apply.">
+<meta name="theme-color" content="#1F57F0">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SparkIIT">
+<meta property="og:title" content="Contact | SparkIIT">
+<meta property="og:description" content="Talk to the SparkIIT team about programs, batches and how to apply.">
+<meta name="twitter:card" content="summary">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="icon" type="image/svg+xml" href="logo-mark.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<div id="site-header"></div>
+<main id="main">
+<section class="relative overflow-hidden border-b border-line">
+  <div class="grid-bg absolute inset-0 pointer-events-none"></div>
+  <div class="orb w-96 h-96 bg-brand-200/50 -top-32 -left-24"></div>
+  <div class="relative container-x pt-14 pb-14 md:pt-20 md:pb-20">
+    <nav class="text-xs text-mute flex items-center gap-2" aria-label="Breadcrumb"><a href="index.html" class="hover:text-ink">Home</a><span aria-hidden="true">/</span><span class="text-ink" aria-current="page">Contact</span></nav>
+    <h1 data-anim class="h1 mt-6 max-w-3xl">Let us help you choose the right program.</h1>
+    <p data-anim class="lead mt-5">Tell us where you are today and where you want to be. Our team will get back to you with a clear plan.</p>
+    
+  </div>
+</section>
+<section class="section">
+  <div class="container-x grid lg:grid-cols-12 gap-10 lg:gap-14">
+    <div class="lg:col-span-7" data-anim>
+      <div x-data="{ sent: false }">
+  <form x-show="!sent" data-subject="Website enquiry" @submit.prevent="SITE.sendMail($event.target); sent = true" class="card p-6 md:p-8 grid gap-5 shadow-soft"><div class="grid sm:grid-cols-2 gap-4"><label class="text-sm"><span class="font-medium">Full name</span><input required name="name" type="text" autocomplete="name" class="mt-1.5 w-full h-11 rounded-lg border border-line bg-white px-3.5 text-sm text-ink placeholder:text-slate-400 outline-none focus:border-brand-500 focus:ring-4 focus:ring-brand-100 transition" placeholder="Your name"></label><label class="text-sm"><span class="font-medium">Phone</span><input required name="phone" type="tel" autocomplete="tel" class="mt-1.5 w-full h-11 rounded-lg border border-line bg-white px-3.5 text-sm text-ink placeholder:text-slate-400 outline-none focus:border-brand-500 focus:ring-4 focus:ring-brand-100 transition" placeholder="+91"></label></div><label class="text-sm"><span class="font-medium">Email</span><input required name="email" type="email" autocomplete="email" class="mt-1.5 w-full h-11 rounded-lg border border-line bg-white px-3.5 text-sm text-ink placeholder:text-slate-400 outline-none focus:border-brand-500 focus:ring-4 focus:ring-brand-100 transition" placeholder="you@example.com"></label><label class="text-sm"><span class="font-medium">Interested in</span><select name="interest" class="mt-1.5 w-full h-11 rounded-lg border border-line bg-white px-3.5 text-sm text-ink placeholder:text-slate-400 outline-none focus:border-brand-500 focus:ring-4 focus:ring-brand-100 transition"><option>Software Development</option><option>Data and AI</option><option>Cloud and DevOps</option><option>Cyber Security</option><option>Design</option><option>Engineering</option><option>Business and Management</option><option>Healthcare and Life Sciences</option><option>Not sure yet</option></select></label><label class="text-sm"><span class="font-medium">Current status</span><select name="status" class="mt-1.5 w-full h-11 rounded-lg border border-line bg-white px-3.5 text-sm text-ink placeholder:text-slate-400 outline-none focus:border-brand-500 focus:ring-4 focus:ring-brand-100 transition"><option>Student</option><option>Recent graduate</option><option>Working professional</option><option>Career switcher</option></select></label><label class="text-sm"><span class="font-medium">Message</span><textarea name="message" rows="4" class="mt-1.5 w-full rounded-lg border border-line bg-white px-3.5 py-3 text-sm text-ink placeholder:text-slate-400 outline-none focus:border-brand-500 focus:ring-4 focus:ring-brand-100 transition" placeholder="Anything we should know?"></textarea></label>
+    <button type="submit" class="btn btn-primary">Send message <svg class="icon w-4 h-4"><use href="#i-arrow"/></svg></button>
+  </form>
+  <div x-show="sent" x-cloak class="card p-10 text-center shadow-soft"><div class="w-12 h-12 rounded-full bg-brand-50 text-brand-600 grid place-items-center mx-auto"><svg class="icon w-6 h-6"><use href="#i-check"/></svg></div><h2 class="mt-5 font-serif text-3xl">Thank you.</h2><p class="mt-2 text-sm text-mute">We have noted your details and will reach out shortly.</p></div>
+</div>
+    </div>
+    <div class="lg:col-span-5 space-y-5">
+      <div data-anim class="card overflow-hidden shadow-soft">
+        <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=900&q=70" alt="Learners at work in a bright room" class="w-full h-48 object-cover" loading="lazy">
+        <div class="p-7"><h2 class="text-xl font-medium">Ready to apply?</h2><p class="mt-2 text-sm text-mute">Skip the wait and submit your application directly.</p><a href="https://evolvix.tech" target="_blank" rel="noopener noreferrer" class="btn btn-primary mt-6">Apply now <svg class="icon w-4 h-4"><use href="#i-external"/></svg></a></div>
+      </div>
+      <ul id="contactInfo" class="space-y-4 text-sm text-slate-600"></ul>
+    </div>
+  </div>
+</section><section class="section pt-0 md:pt-0">
+  <div class="container-x">
+    <div data-anim class="relative overflow-hidden rounded-3xl bg-brand-900 text-white px-6 py-14 md:px-16 md:py-20 text-center">
+      <svg class="absolute -right-24 -top-24 w-[28rem] h-[28rem] text-white/10 pointer-events-none" viewBox="0 0 400 400" fill="none" stroke="currentColor" aria-hidden="true"><circle cx="200" cy="200" r="60"/><circle cx="200" cy="200" r="110"/><circle cx="200" cy="200" r="160"/><circle cx="200" cy="200" r="195"/></svg>
+      <div class="relative"><h2 class="h2 max-w-2xl mx-auto">Ready to start learning?</h2>
+      <p class="mt-4 text-white/75 max-w-lg mx-auto">Choose a program, apply in minutes and begin with live mentors and real projects.</p>
+      <div class="mt-9 flex flex-wrap justify-center gap-3"><a href="https://evolvix.tech" target="_blank" rel="noopener noreferrer" class="btn btn-light">Apply now <svg class="icon w-4 h-4"><use href="#i-external"/></svg></a><a href="programs.html" class="btn btn-ghost-light">Browse programs</a></div></div>
+    </div>
+  </div>
+</section>
+</main>
+<div id="site-footer"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.14.1/dist/cdn.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
+<script src="assets/config.js"></script>
+<script src="assets/programs-data.js"></script>
+<script src="assets/site.js"></script>
+<script>
+(function () {
+  var c = SITE.config, rows = '';
+  if (c.address) rows += '<li class="flex gap-3">' + SITE.icon('pin', 'w-4 h-4 mt-1 text-brand-600') + '<span>' + c.address + '</span></li>';
+  if (c.phone) rows += '<li class="flex gap-3">' + SITE.icon('phone', 'w-4 h-4 mt-1 text-brand-600') + '<a href="tel:' + c.phone.replace(/\s+/g, '') + '" class="hover:text-ink">' + c.phone + '</a></li>';
+  if (c.email) rows += '<li class="flex gap-3">' + SITE.icon('mail', 'w-4 h-4 mt-1 text-brand-600') + '<a href="mailto:' + c.email + '" class="hover:text-ink">' + c.email + '</a></li>';
+  var el = document.getElementById('contactInfo');
+  if (rows) el.innerHTML = rows; else el.remove();
+})();
+</script>
+<script>SITE.anim();</script>
+</body>
+</html>

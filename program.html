@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Program | SparkIIT</title>
+<meta name="description" content="SparkIIT program details: syllabus, tools and brochure.">
+<meta name="theme-color" content="#1F57F0">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SparkIIT">
+<meta property="og:title" content="Program | SparkIIT">
+<meta property="og:description" content="SparkIIT program details: syllabus, tools and brochure.">
+<meta name="twitter:card" content="summary">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="icon" type="image/svg+xml" href="logo-mark.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11.1.14/swiper-bundle.min.css">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<div id="site-header"></div>
+<main id="main">
+<div id="prog"></div>
+</main>
+<div id="site-footer"></div>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11.1.14/swiper-bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.14.1/dist/cdn.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
+<script src="assets/config.js"></script>
+<script src="assets/programs-data.js"></script>
+<script src="assets/site.js"></script>
+<script>
+(function () {
+  var esc = function (s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); };
+  var p = new URLSearchParams(location.search).get('p');
+  var c = SITE.courses.filter(function (x) { return x.slug === p; })[0] || SITE.courses[0];
+  document.title = c.name + ' | SparkIIT';
+  var meta = document.querySelector('meta[name="description"]');
+  if (meta) meta.setAttribute('content', c.name + ' at SparkIIT: syllabus, tools and brochure. ' + c.d);
+  var pdf = 'pdf/' + encodeURIComponent(c.pdf);
+  var related = SITE.courses.filter(function (x) { return x.cat === c.cat && x.slug !== c.slug; });
+  if (related.length < 3) related = related.concat(SITE.courses.filter(function (x) { return x.cat !== c.cat && x.slug !== c.slug; }).slice(0, 3 - related.length));
+  related = related.slice(0, 6);
+
+  var tools = c.tools.length ? c.tools.map(function (t) { return '<span class="inline-flex items-center gap-2.5 bg-white border border-line rounded-xl px-4 py-2.5 text-sm"><img src="' + SITE.dv(t[0], t[1]) + '" alt="" class="w-6 h-6">' + esc(SITE.toolName(t[0])) + '</span>'; }).join('') : '';
+  var highlights = [['target', 'Industry-focused skills', 'Learn the tools and methods employers ask for, taught step by step.'], ['award', 'Certification', 'Finish the program and earn a certificate you can share with employers.'], ['layers', 'Hands-on practice', 'Practise each topic through guided exercises and projects.']];
+
+  var modTabs = c.mods.map(function (m, i) {
+    return '<button type="button" @click="m = ' + i + '" :aria-current="m === ' + i + '" :class="m === ' + i + ' ? \'bg-brand-50 text-brand-700 border-brand-200 font-medium\' : \'bg-white text-slate-600 border-line hover:border-slate-300\'" class="w-64 shrink-0 lg:w-full text-left flex items-start gap-3 px-4 py-3 rounded-xl border text-sm transition-colors"><span class="text-xs w-6 flex-none pt-0.5" :class="m === ' + i + ' ? \'text-brand-600\' : \'text-slate-400\'">' + (i < 9 ? '0' : '') + (i + 1) + '</span><span>' + esc(m.t) + '</span></button>';
+  }).join('');
+  var modPanels = c.mods.map(function (m, i) {
+    var items = m.items.length ? '<ul class="grid sm:grid-cols-2 gap-x-8 gap-y-3.5">' + m.items.map(function (t) { return '<li class="flex gap-3 text-sm text-slate-600"><svg class="icon w-4 h-4 text-brand-600 mt-0.5"><use href="#i-check"/></svg><span>' + esc(t) + '</span></li>'; }).join('') + '</ul>' : '<p class="text-sm text-mute">Topics for this module are listed in the brochure.</p>';
+    return '<div x-show="m === ' + i + '" x-cloak x-transition.opacity.duration.200ms><p class="text-xs text-brand-600 font-medium">Module ' + (i + 1) + ' of ' + c.mods.length + '</p><h3 class="mt-2 text-xl md:text-2xl font-medium leading-snug">' + esc(m.t) + '</h3><div class="mt-7">' + items + '</div></div>';
+  }).join('');
+
+  var dl = function (cls) { return '<a href="' + pdf + '" download class="btn btn-outline ' + cls + '">' + SITE.icon('download', 'w-4 h-4') + 'Download brochure</a>'; };
+
+  var html = '' +
+  '<section class="relative overflow-hidden border-b border-line"><div class="grid-bg absolute inset-0 pointer-events-none"></div><div class="orb w-96 h-96 bg-brand-200/50 -top-32 -left-24"></div>' +
+  '<div class="relative container-x pt-12 pb-14 md:pt-16 md:pb-20 grid lg:grid-cols-12 gap-12 items-center"><div class="lg:col-span-7">' +
+  '<nav class="text-xs text-mute flex flex-wrap items-center gap-2" aria-label="Breadcrumb"><a href="index.html" class="hover:text-ink">Home</a><span aria-hidden="true">/</span><a href="programs.html" class="hover:text-ink">Programs</a><span aria-hidden="true">/</span><span class="text-ink" aria-current="page">' + esc(c.name) + '</span></nav>' +
+  '<h1 data-anim class="h1 mt-6">' + esc(c.name) + '</h1>' +
+  '<p data-anim class="lead mt-5">' + esc(c.d) + '</p>' +
+  '<ul data-anim class="mt-7 flex flex-wrap gap-2.5"><li class="pill">' + SITE.icon('layers', 'w-3.5 h-3.5 text-brand-600') + esc(c.cat) + '</li><li class="pill">' + SITE.icon('video', 'w-3.5 h-3.5 text-brand-600') + 'Live online sessions</li><li class="pill">' + SITE.icon('file', 'w-3.5 h-3.5 text-brand-600') + c.mods.length + ' modules</li><li class="pill">' + SITE.icon('award', 'w-3.5 h-3.5 text-brand-600') + 'Certificate</li></ul>' +
+  '<div data-anim class="mt-9 flex flex-wrap gap-3">' + SITE.applyBtn('') + dl('') + '</div></div>' +
+  '<div class="lg:col-span-5" data-anim><div class="relative"><div class="absolute -inset-3 rounded-3xl bg-brand-50 rotate-2"></div><img src="' + SITE.img(c.img, 1000) + '" alt="" class="relative w-full aspect-[4/3] object-cover rounded-2xl shadow-lift"></div></div></div></section>' +
+
+  '<section class="section"><div class="container-x"><h2 class="h2 max-w-2xl">Built to make you job-ready.</h2><p class="lead mt-5">Designed for students, professionals and career switchers who want practical skills and proof of what they can do.</p><div class="mt-14 grid md:grid-cols-3 gap-10">' + highlights.map(function (h) { return '<div data-anim class="flex gap-4"><div class="icon-tile flex-none">' + SITE.icon(h[0]) + '</div><div><h3 class="font-medium">' + h[1] + '</h3><p class="mt-1.5 text-sm text-mute">' + h[2] + '</p></div></div>'; }).join('') + '</div></div></section>' +
+
+  '<section id="syllabus" class="section bg-slate-50/70 border-y border-line"><div class="container-x"><div class="flex flex-wrap items-end justify-between gap-6"><h2 class="h2">What you will learn</h2>' + dl('btn-sm') + '</div>' +
+  '<div class="mt-12 grid grid-cols-1 lg:grid-cols-12 gap-6" x-data="{ m: 0 }"><div class="lg:col-span-4 min-w-0"><div class="flex lg:grid gap-2 overflow-x-auto lg:overflow-x-visible lg:sticky lg:top-24 lg:max-h-[34rem] lg:overflow-y-auto no-scrollbar -mx-5 px-5 lg:mx-0 lg:px-0 pb-1">' + modTabs + '</div></div><div class="lg:col-span-8 min-w-0"><div class="card p-7 md:p-10 min-h-[22rem] shadow-soft">' + modPanels + '</div></div></div>' +
+  (tools ? '<h3 class="mt-14 font-medium">Tools you will use</h3><div class="mt-5 flex flex-wrap gap-3">' + tools + '</div>' : '') + '</div></section>' +
+
+  '<section id="enquire" class="section scroll-mt-24"><div class="container-x grid lg:grid-cols-12 gap-12 items-center"><div class="lg:col-span-5"><h2 class="h2">Enroll in ' + esc(c.name) + '.</h2><p class="lead mt-5">Share your details and we will send the batch dates, fees and joining steps. Or apply directly.</p><div class="mt-8 flex flex-wrap gap-3">' + SITE.applyBtn('') + dl('') + '</div></div>' +
+  '<div class="lg:col-span-7" x-data="{ sent: false }"><form x-show="!sent" data-subject="Enquiry: ' + esc(c.name) + '" @submit.prevent="SITE.sendMail($event.target); sent = true" class="card p-7 md:p-9 grid gap-5 shadow-soft"><div class="grid sm:grid-cols-2 gap-4"><label class="text-sm"><span class="font-medium">Full name</span><input required name="name" type="text" autocomplete="name" class="mt-1.5 w-full h-11 rounded-lg border border-line bg-white px-3.5 text-sm text-ink placeholder:text-slate-400 outline-none focus:border-brand-500 focus:ring-4 focus:ring-brand-100 transition" placeholder="Your name"></label><label class="text-sm"><span class="font-medium">Phone</span><input required name="phone" type="tel" autocomplete="tel" class="mt-1.5 w-full h-11 rounded-lg border border-line bg-white px-3.5 text-sm text-ink placeholder:text-slate-400 outline-none focus:border-brand-500 focus:ring-4 focus:ring-brand-100 transition" placeholder="+91"></label></div><label class="text-sm"><span class="font-medium">Email</span><input required name="email" type="email" autocomplete="email" class="mt-1.5 w-full h-11 rounded-lg border border-line bg-white px-3.5 text-sm text-ink placeholder:text-slate-400 outline-none focus:border-brand-500 focus:ring-4 focus:ring-brand-100 transition" placeholder="you@example.com"></label><button type="submit" class="btn btn-primary">Request details ' + SITE.icon('arrow', 'w-4 h-4') + '</button></form>' +
+  '<div x-show="sent" x-cloak class="card p-10 text-center shadow-soft"><div class="w-12 h-12 rounded-full bg-brand-50 text-brand-600 grid place-items-center mx-auto">' + SITE.icon('check', 'w-6 h-6') + '</div><h3 class="mt-5 font-serif text-3xl">Thank you.</h3><p class="mt-2 text-sm text-mute">We will reach out shortly.</p></div></div></div></section>' +
+
+  (related.length ? '<section class="section bg-slate-50/70 border-t border-line overflow-hidden"><div class="container-x"><h2 class="h2">Related programs</h2><div class="swiper mt-12 !overflow-hidden" id="relSwiper"><div class="swiper-wrapper">' + related.map(function (r) { return '<div class="swiper-slide !h-auto">' + SITE.card(r) + '</div>'; }).join('') + '</div></div><div class="swiper-pagination !relative !mt-8 rel-pag"></div></div></section>' : '') +
+
+  '<div class="lg:hidden fixed bottom-0 inset-x-0 z-30 border-t border-line bg-white/95 backdrop-blur px-5 py-3 flex items-center gap-3"><div class="min-w-0 flex-1"><div class="text-sm font-medium truncate">' + esc(c.name) + '</div><div class="text-xs text-mute">' + c.mods.length + ' modules</div></div>' + SITE.applyBtn('btn-sm') + '</div>';
+
+  document.getElementById('prog').innerHTML = html;
+  document.body.style.paddingBottom = window.innerWidth < 1024 ? '4.5rem' : '';
+  if (related.length) new Swiper('#relSwiper', { slidesPerView: 1.1, spaceBetween: 16, grabCursor: true, pagination: { el: '.rel-pag', clickable: true, dynamicBullets: true }, breakpoints: { 640: { slidesPerView: 2.1 }, 1024: { slidesPerView: 3 } } });
+})();
+</script>
+<script>SITE.anim();</script>
+</body>
+</html>

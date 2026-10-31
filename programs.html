@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Programs | SparkIIT</title>
+<meta name="description" content="Browse SparkIIT programs in software, data, cloud, security, design, engineering and business.">
+<meta name="theme-color" content="#1F57F0">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SparkIIT">
+<meta property="og:title" content="Programs | SparkIIT">
+<meta property="og:description" content="Browse SparkIIT programs in software, data, cloud, security, design, engineering and business.">
+<meta name="twitter:card" content="summary">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="icon" type="image/svg+xml" href="logo-mark.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<div id="site-header"></div>
+<main id="main">
+<section class="relative overflow-hidden border-b border-line">
+  <div class="grid-bg absolute inset-0 pointer-events-none"></div>
+  <div class="orb w-96 h-96 bg-brand-200/50 -top-32 -left-24"></div>
+  <div class="relative container-x pt-14 pb-14 md:pt-20 md:pb-20">
+    <nav class="text-xs text-mute flex items-center gap-2" aria-label="Breadcrumb"><a href="index.html" class="hover:text-ink">Home</a><span aria-hidden="true">/</span><span class="text-ink" aria-current="page">Programs</span></nav>
+    <h1 data-anim class="h1 mt-6 max-w-3xl">Explore our programs.</h1>
+    <p data-anim class="lead mt-5">Browse every program, compare syllabi and download the brochure. Apply when you are ready.</p>
+    
+  </div>
+</section>
+<section class="section pt-12 md:pt-16">
+  <div class="container-x">
+    <div class="flex flex-col lg:flex-row lg:items-center gap-5 justify-between">
+      <label class="relative lg:w-80 block"><span class="sr-only">Search programs</span><svg class="icon w-4 h-4 absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"><use href="#i-search"/></svg><input id="q" type="search" placeholder="Search programs" class="w-full h-11 rounded-full border border-line bg-white pl-11 pr-4 text-sm placeholder:text-slate-400 outline-none focus:border-brand-500 focus:ring-4 focus:ring-brand-100 transition"></label>
+      <div id="cats" class="flex gap-2 overflow-x-auto no-scrollbar -mx-5 px-5 lg:mx-0 lg:px-0" role="tablist" aria-label="Program categories"></div>
+    </div>
+    <p id="count" class="mt-10 text-sm text-mute" aria-live="polite"></p>
+    <div id="grid" class="mt-4 grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    <div id="empty" class="hidden card p-14 text-center text-mute">No programs match your search. Try a different keyword.</div>
+  </div>
+</section><section class="section pt-0 md:pt-0">
+  <div class="container-x">
+    <div data-anim class="relative overflow-hidden rounded-3xl bg-brand-900 text-white px-6 py-14 md:px-16 md:py-20 text-center">
+      <svg class="absolute -right-24 -top-24 w-[28rem] h-[28rem] text-white/10 pointer-events-none" viewBox="0 0 400 400" fill="none" stroke="currentColor" aria-hidden="true"><circle cx="200" cy="200" r="60"/><circle cx="200" cy="200" r="110"/><circle cx="200" cy="200" r="160"/><circle cx="200" cy="200" r="195"/></svg>
+      <div class="relative"><h2 class="h2 max-w-2xl mx-auto">Cannot find what you need?</h2>
+      <p class="mt-4 text-white/75 max-w-lg mx-auto">Tell us your goal and we will suggest the right program.</p>
+      <div class="mt-9 flex flex-wrap justify-center gap-3"><a href="https://evolvix.tech" target="_blank" rel="noopener noreferrer" class="btn btn-light">Apply now <svg class="icon w-4 h-4"><use href="#i-external"/></svg></a><a href="programs.html" class="btn btn-ghost-light">Browse programs</a></div></div>
+    </div>
+  </div>
+</section>
+</main>
+<div id="site-footer"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.14.1/dist/cdn.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
+<script src="assets/config.js"></script>
+<script src="assets/programs-data.js"></script>
+<script src="assets/site.js"></script>
+<script>
+(function () {
+  var cat = 'All', q = '';
+  var cats = ['All'].concat(SITE.cats);
+  var box = document.getElementById('cats');
+  cats.forEach(function (c) {
+    var b = document.createElement('button');
+    b.dataset.c = c; b.textContent = c; b.setAttribute('role', 'tab');
+    b.addEventListener('click', function () { cat = c; render(); });
+    box.appendChild(b);
+  });
+  function render() {
+    box.querySelectorAll('button').forEach(function (b) {
+      var on = b.dataset.c === cat;
+      b.setAttribute('aria-selected', on);
+      b.className = 'whitespace-nowrap px-4 py-2 rounded-full text-sm border transition-colors ' + (on ? 'tab-active border-brand-200' : 'border-line bg-white text-slate-600 hover:border-slate-300');
+    });
+    var list = SITE.courses.filter(function (c) { return (cat === 'All' || c.cat === cat) && (c.name + ' ' + c.d).toLowerCase().indexOf(q) > -1; });
+    document.getElementById('grid').innerHTML = list.map(function (c) { return '<div>' + SITE.card(c) + '</div>'; }).join('');
+    document.getElementById('count').textContent = list.length + (list.length === 1 ? ' program' : ' programs');
+    document.getElementById('empty').classList.toggle('hidden', list.length > 0);
+  }
+  document.getElementById('q').addEventListener('input', function (e) { q = e.target.value.trim().toLowerCase(); render(); });
+  render();
+})();
+</script>
+<script>SITE.anim();</script>
+</body>
+</html>
